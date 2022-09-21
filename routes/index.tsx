@@ -1,3 +1,5 @@
+import { IconGithub, IconLinkedIn } from "../components/Icons.tsx";
+
 export default function Home() {
   return (
     <main class="p-6 mx-auto max-w-screen-md text-center sm:(bg-white dark:(bg-gray-800 ring-gray-700) ring-1 ring-gray-100 shadow-md rounded-lg text-left)">
@@ -18,9 +20,17 @@ export default function Home() {
           </h2>
         </div>
       </div>
-      <p class="text-lg">
+      <p class="text-lg mb-6">
         Enthusiastic about building excellent digital products 🧑‍💻=🚀
       </p>
+      <div class="flex flex-row justify-center sm:justify-start">
+        <a class="pr-4" href="https://www.linkedin.com/in/richard-stromer/">
+          <IconLinkedIn />
+        </a>
+        <a href="https://github.com/noxan">
+          <IconGithub />
+        </a>
+      </div>
     </main>
   );
 }
