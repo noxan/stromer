@@ -2,7 +2,7 @@ import Counter from "../islands/Counter.tsx";
 
 export default function Home() {
   return (
-    <main class="p-4 mx-auto max-w-screen-md bg-white ring-1 ring-gray-100 shadow-md">
+    <main class="p-4 mx-auto max-w-screen-md bg-white ring-1 ring-gray-100 shadow-md rounded-lg">
       <div class="flex mb-2">
         <picture class="w-32 h-32 rounded-full aspect-square mr-4">
           <source srcset="/me.webp" type="image/webp" />
