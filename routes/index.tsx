@@ -8,6 +8,7 @@ export default function Home() {
         class="w-32 h-32"
         alt="the fresh logo: a sliced lemon dripping with juice"
       />
+      <h1 class="text-4xl font-bold">Hello, world!</h1>
       <p class="my-6">
         Welcome to `fresh`. Try updating this message in the ./routes/index.tsx
         file, and refresh.
