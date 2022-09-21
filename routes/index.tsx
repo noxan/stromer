@@ -24,10 +24,16 @@ export default function Home() {
         Enthusiastic about building excellent digital products 🧑‍💻=🚀
       </p>
       <div class="flex flex-row justify-center sm:justify-start">
-        <a class="pr-4" href="https://www.linkedin.com/in/richard-stromer/">
+        <a
+          class="pr-4 fill-current transition text-gray-600 hover:text-gray-400 dark:(text-gray-400 hover:text-gray-200)"
+          href="https://www.linkedin.com/in/richard-stromer/"
+        >
           <IconLinkedIn />
         </a>
-        <a href="https://github.com/noxan">
+        <a
+          class="fill-current transition text-gray-600 hover:text-gray-400 dark:(text-gray-400 hover:text-gray-200)"
+          href="https://github.com/noxan"
+        >
           <IconGithub />
         </a>
       </div>
