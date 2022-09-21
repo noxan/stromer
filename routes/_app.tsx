@@ -7,7 +7,7 @@ export default function App({ Component }: AppProps) {
       <Head>
         <title>stromer.org</title>
       </Head>
-      <body class="antialiased flex justify-center h-screen flex-col bg-gray-50">
+      <body class="antialiased flex justify-center h-screen flex-col bg-gray-50 dark:(bg-gray-900 text-gray-100)">
         <Component />
       </body>
     </html>
