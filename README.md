@@ -1,4 +1,8 @@
-# fresh project
+# stromer.org
+
+My personal website, [https://stromer.org](https://stromer.org).
+
+## fresh project
 
 ### Usage
 
