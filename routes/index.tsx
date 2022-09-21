@@ -2,7 +2,7 @@ import Counter from "../islands/Counter.tsx";
 
 export default function Home() {
   return (
-    <div class="p-4 mx-auto max-w-screen-md">
+    <div class="p-4 mx-auto max-w-screen-md bg-white ring-1 ring-gray-100">
       <img
         src="/logo.svg"
         class="w-32 h-32"
