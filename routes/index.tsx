@@ -2,14 +2,14 @@ import Counter from "../islands/Counter.tsx";
 
 export default function Home() {
   return (
-    <main class="p-6 mx-auto max-w-screen-md bg-white dark:(bg-gray-800 ring-gray-700) ring-1 ring-gray-100 shadow-md rounded-lg text-center sm:text-left">
+    <main class="p-6 mx-auto max-w-screen-md text-center sm:(bg-white dark:(bg-gray-800 ring-gray-700) ring-1 ring-gray-100 shadow-md rounded-lg text-left)">
       <div class="flex flex-col mb-3 items-center	sm:(flex-row items-stretch)">
-        <picture class="w-32 h-32 rounded-full aspect-square mr-5">
+        <picture class="w-32 h-32 rounded-full aspect-square mb-3 sm:mr-5">
           <source srcset="/me.webp" type="image/webp" />
           <source srcset="/me.jpg" type="image/jpeg" />
           <img
             src="/me.jpg"
-            class="w-32 h-32 rounded-full aspect-square mr-5"
+            class="w-32 h-32 rounded-full aspect-square mb-3 sm:mr-5"
             alt="profile picture of richard stromer"
           />
         </picture>
