@@ -8,11 +8,11 @@ export default function Home() {
         class="w-32 h-32"
         alt="the fresh logo: a sliced lemon dripping with juice"
       />
-      <h1 class="text-4xl my-1">Richard Stromer</h1>
-      <h2 class="text-xl text-gray-600 my-1">
+      <h1 class="text-4xl mb-1">Richard Stromer</h1>
+      <h2 class="text-xl text-gray-600 mb-2">
         Entrepreneur and digital product manager.
       </h2>
-      <p class="my-2">
+      <p class="text-lg mb-6">
         Enthusiastic about building excellent digital products 🧑‍💻=🚀
       </p>
       <Counter start={3} />
