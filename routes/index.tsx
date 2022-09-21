@@ -1,5 +1,3 @@
-import Counter from "../islands/Counter.tsx";
-
 export default function Home() {
   return (
     <main class="p-6 mx-auto max-w-screen-md text-center sm:(bg-white dark:(bg-gray-800 ring-gray-700) ring-1 ring-gray-100 shadow-md rounded-lg text-left)">
@@ -20,10 +18,9 @@ export default function Home() {
           </h2>
         </div>
       </div>
-      <p class="text-lg mb-6">
+      <p class="text-lg">
         Enthusiastic about building excellent digital products 🧑‍💻=🚀
       </p>
-      <Counter start={3} />
     </main>
   );
 }
