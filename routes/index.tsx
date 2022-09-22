@@ -1,4 +1,9 @@
-import { IconGithub, IconLinkedIn, IconMedium } from "../components/Icons.tsx";
+import {
+  IconGithub,
+  IconLinkedIn,
+  IconMedium,
+  IconTwitter,
+} from "../components/Icons.tsx";
 
 export default function Home() {
   const profiles = [
@@ -7,6 +12,7 @@ export default function Home() {
       icon: <IconLinkedIn />,
     },
     { url: "https://github.com/noxan", icon: <IconGithub /> },
+    { url: "https://twitter.com/richardstromer", icon: <IconTwitter /> },
     { url: "https://medium.com/@richard.stromer", icon: <IconMedium /> },
   ];
 
