@@ -1,6 +1,15 @@
 import { IconGithub, IconLinkedIn, IconMedium } from "../components/Icons.tsx";
 
 export default function Home() {
+  const profiles = [
+    {
+      url: "https://www.linkedin.com/in/richard-stromer/",
+      icon: <IconLinkedIn />,
+    },
+    { url: "https://github.com/noxan", icon: <IconGithub /> },
+    { url: "https://medium.com/@richard.stromer", icon: <IconMedium /> },
+  ];
+
   return (
     <main class="p-6 mx-auto max-w-screen-md text-center sm:(bg-white dark:(bg-gray-800 ring-gray-700) ring-1 ring-gray-100 shadow-md rounded-lg text-left)">
       <div class="flex flex-col mb-3 items-center	sm:(flex-row items-stretch)">
@@ -24,24 +33,14 @@ export default function Home() {
         Enthusiastic about building excellent digital products 🧑‍💻=🚀
       </p>
       <div class="flex flex-row justify-center sm:justify-start">
-        <a
-          class="pr-4 fill-current transition text-gray-600 hover:text-gray-400 dark:(text-gray-400 hover:text-gray-200)"
-          href="https://www.linkedin.com/in/richard-stromer/"
-        >
-          <IconLinkedIn />
-        </a>
-        <a
-          class="pr-4 fill-current transition text-gray-600 hover:text-gray-400 dark:(text-gray-400 hover:text-gray-200)"
-          href="https://github.com/noxan"
-        >
-          <IconGithub />
-        </a>
-        <a
-          class="fill-current transition text-gray-600 hover:text-gray-400 dark:(text-gray-400 hover:text-gray-200)"
-          href="https://medium.com/@richard.stromer"
-        >
-          <IconMedium />
-        </a>
+        {profiles.map((profile) => (
+          <a
+            class="pr-4 fill-current transition text-gray-600 hover:text-gray-400 dark:(text-gray-400 hover:text-gray-200)"
+            href={profile.url}
+          >
+            {profile.icon}
+          </a>
+        ))}
       </div>
     </main>
   );
