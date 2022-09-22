@@ -1,4 +1,4 @@
-import { IconGithub, IconLinkedIn } from "../components/Icons.tsx";
+import { IconGithub, IconLinkedIn, IconMedium } from "../components/Icons.tsx";
 
 export default function Home() {
   return (
@@ -31,10 +31,16 @@ export default function Home() {
           <IconLinkedIn />
         </a>
         <a
-          class="fill-current transition text-gray-600 hover:text-gray-400 dark:(text-gray-400 hover:text-gray-200)"
+          class="pr-4 fill-current transition text-gray-600 hover:text-gray-400 dark:(text-gray-400 hover:text-gray-200)"
           href="https://github.com/noxan"
         >
           <IconGithub />
+        </a>
+        <a
+          class="fill-current transition text-gray-600 hover:text-gray-400 dark:(text-gray-400 hover:text-gray-200)"
+          href="https://medium.com/@richard.stromer"
+        >
+          <IconMedium />
         </a>
       </div>
     </main>
