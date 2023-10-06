@@ -242,6 +242,8 @@
     "https://deno.land/x/esbuild_deno_loader@0.8.1/src/plugin_deno_resolver.ts": "0449ed23ae93db1ec74d015a46934aefd7ba7a8f719f7a4980b616cb3f5bbee4",
     "https://deno.land/x/esbuild_deno_loader@0.8.1/src/shared.ts": "33052684aeb542ebd24da372816bbbf885cd090a7ab0fde7770801f7f5b49572",
     "https://deno.land/x/fresh@1.4.3/dev.ts": "720dd3a64b62b852db7b6ae471c246c5c605cf4a3091c4cbc802790f36d43e4c",
+    "https://deno.land/x/fresh@1.4.3/plugins/twind.ts": "b20ab6004318eb56538976c49b23c125560845650cf2b2d69b463c31b16da06f",
+    "https://deno.land/x/fresh@1.4.3/plugins/twind/shared.ts": "ad8ccde3874b305be13a996e6f1c774bb9f611505f98a0995f5f7be368c5949c",
     "https://deno.land/x/fresh@1.4.3/runtime.ts": "b02ec1e2e32cf73a33d262b7c9dcab9468ce16cd89fd424196c71003698a4ab0",
     "https://deno.land/x/fresh@1.4.3/server.ts": "f379c9aad24471a71e58fb887fa57e5cc27ad9df035987eb260541c78df38e84",
     "https://deno.land/x/fresh@1.4.3/src/build/aot_snapshot.ts": "ab1215fe2cd0b2c3d38fdf353fb587808aa2265c1d95798f203888e6aa44b0c7",
@@ -295,6 +297,11 @@
     "https://esm.sh/stable/preact@10.15.1/denonext/hooks.js": "5c989ad368cf4f2cb3a5d7d1801843d9348c599fe3e7731d04728f7b845d724e",
     "https://esm.sh/stable/preact@10.15.1/denonext/jsx-runtime.js": "52806054f5b3477005ab4bdc17de3d219ccc6c130d0cd803c45667b0cac2f6ed",
     "https://esm.sh/stable/preact@10.15.1/denonext/preact.mjs": "30710ac1d5ff3711ae0c04eddbeb706f34f82d97489f61aaf09897bc75d2a628",
-    "https://esm.sh/v132/preact-render-to-string@6.2.1/X-ZS8q/denonext/preact-render-to-string.mjs": "7a5a7c19872e0cb93fe6aa398c20510b3d9f34bd6565c0ccc30cb1a90d53a6c4"
+    "https://esm.sh/twind@0.16.19": "c8103f6f32af0121b2b587ddcb88a50b553adea5b6c7cf0d853e93ed3aecd654",
+    "https://esm.sh/twind@0.16.19/sheets": "c282a10faa36da91d7dbcd4bf602d8cc843e8d514e107aa10525002080d4968e",
+    "https://esm.sh/v132/preact-render-to-string@6.2.1/X-ZS8q/denonext/preact-render-to-string.mjs": "7a5a7c19872e0cb93fe6aa398c20510b3d9f34bd6565c0ccc30cb1a90d53a6c4",
+    "https://esm.sh/v132/style-vendorizer@2.2.3/denonext/style-vendorizer.mjs": "121455e7b04b631ef6463ce63cdcd29febd74d88c37713c774ceca8a1561c83d",
+    "https://esm.sh/v132/twind@0.16.19/denonext/sheets.js": "efd516ad31769dc75c995bfb984ab03d23c0e0a90240c83a5496ef150cfd4757",
+    "https://esm.sh/v132/twind@0.16.19/denonext/twind.mjs": "fa6873be436c567efddc2f1f2d2999087c1ceec66853c8008cd11644a9c2c62b"
   }
 }

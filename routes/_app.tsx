@@ -1,5 +1,5 @@
-import { AppProps } from "$fresh/src/server/types.ts";
 import { Head } from "$fresh/runtime.ts";
+import { AppProps } from "$fresh/src/server/types.ts";
 
 const title = "Richard Stromer";
 const description =
