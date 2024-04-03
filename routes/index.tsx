@@ -17,8 +17,8 @@ export default function Home() {
   ];
 
   return (
-    <main class="p-6 mx-auto max-w-screen-md text-center sm:(bg-white dark:(bg-gray-800 ring-gray-700) ring-1 ring-gray-100 shadow-md rounded-lg text-left)">
-      <div class="flex flex-col mb-3 items-center	sm:(flex-row items-stretch)">
+    <main class="p-6 mx-auto max-w-screen-md text-center sm:bg-white sm:dark:bg-gray-800 sm:dark:ring-gray-700 sm:ring-1 sm:ring-gray-100 sm:shadow-md sm:rounded-lg sm:text-left">
+      <div class="flex flex-col mb-3 items-center	sm:flex-row sm:items-stretch">
         <picture class="w-32 h-32 rounded-full aspect-square mb-3 sm:mr-5">
           <source srcset="/me.webp" type="image/webp" />
           <source srcset="/me.jpg" type="image/jpeg" />
@@ -41,7 +41,7 @@ export default function Home() {
       <div class="flex flex-row justify-center sm:justify-start">
         {profiles.map((profile) => (
           <a
-            class="pr-4 fill-current transition text-gray-600 hover:text-gray-400 dark:(text-gray-400 hover:text-gray-200)"
+            class="pr-4 fill-current transition text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-200"
             href={profile.url}
           >
             {profile.icon}

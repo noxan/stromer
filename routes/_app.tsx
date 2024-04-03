@@ -48,7 +48,7 @@ export default function App({ Component }: PageProps) {
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="stylesheet" href="/styles.css" />
       </head>
-      <body class="antialiased flex justify-center h-screen flex-col sm:(bg-gray-50 dark:(bg-gray-900)) dark:(bg-gray-800 text-gray-100)">
+      <body class="antialiased flex justify-center h-screen flex-col sm:bg-gray-50 sm:dark:bg-gray-900 dark:bg-gray-800 dark:text-gray-100">
         <Component />
       </body>
     </html>
