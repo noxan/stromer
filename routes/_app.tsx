@@ -1,5 +1,5 @@
 import { Head } from "$fresh/runtime.ts";
-import { AppProps } from "$fresh/src/server/types.ts";
+import type { PageProps } from "$fresh/src/server/types.ts";
 
 const title = "Richard Stromer";
 const description =
@@ -8,9 +8,9 @@ const domain = "stromer.org";
 const website = "https://stromer.org/";
 const image = "https://stromer.org/me.webp";
 
-export default function App({ Component }: AppProps) {
+export default function App({ Component }: PageProps) {
   return (
-    <html>
+    <html lang="en">
       <Head>
         <title>Richard Stromer</title>
         <meta name="description" content={description} />

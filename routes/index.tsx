@@ -25,7 +25,7 @@ export default function Home() {
           <img
             src="/me.jpg"
             class="w-32 h-32 rounded-full aspect-square mb-3 sm:mr-5"
-            alt="profile picture of richard stromer"
+            alt="profile of richard stromer"
           />
         </picture>
         <div class="flex flex-col justify-center">
