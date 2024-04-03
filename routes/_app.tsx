@@ -1,5 +1,4 @@
-import { Head } from "$fresh/runtime.ts";
-import type { PageProps } from "$fresh/src/server/types.ts";
+import type { PageProps } from "$fresh/server.ts";
 
 const title = "Richard Stromer";
 const description =
@@ -11,7 +10,10 @@ const image = "https://stromer.org/me.webp";
 export default function App({ Component }: PageProps) {
   return (
     <html lang="en">
-      <Head>
+      <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
         <title>Richard Stromer</title>
         <meta name="description" content={description} />
         <meta property="og:url" content={website} />
@@ -44,7 +46,8 @@ export default function App({ Component }: PageProps) {
           href="/favicon-16x16.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
-      </Head>
+        <link rel="stylesheet" href="/styles.css" />
+      </head>
       <body class="antialiased flex justify-center h-screen flex-col sm:(bg-gray-50 dark:(bg-gray-900)) dark:(bg-gray-800 text-gray-100)">
         <Component />
       </body>
