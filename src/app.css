@@ -1,1 +1,9 @@
+@import '@fontsource/space-grotesk';
+
 @import 'tailwindcss';
+
+body {
+	font-optical-sizing: auto;
+	font-family: 'Space Grotesk';
+	letter-spacing: -0.025em;
+}
