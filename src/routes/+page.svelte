@@ -26,13 +26,15 @@
 			/>
 		</picture>
 		<div class="flex flex-col justify-center">
-			<h1 class="mb-1 text-4xl">Richard Stromer</h1>
+			<h1 class="mb-1 text-4xl text-gray-900 dark:text-gray-100">Richard Stromer</h1>
 			<h2 class="mb-2 text-xl text-gray-600 dark:text-gray-400">
 				Entrepreneur and digital product manager.
 			</h2>
 		</div>
 	</div>
-	<p class="mb-6 text-lg">Enthusiastic about building excellent digital products 🧑‍💻=🚀</p>
+	<p class="mb-6 text-lg text-gray-600 dark:text-gray-400">
+		Enthusiastic about building excellent digital products 🧑‍💻=🚀
+	</p>
 	<div class="flex flex-row justify-center sm:justify-start">
 		{#each profiles as profile}
 			<a
