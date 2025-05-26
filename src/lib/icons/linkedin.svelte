@@ -3,7 +3,7 @@
 	role="img"
 	viewBox="0 0 24 24"
 	fill="currentColor"
-	class="h-6 w-6"
+	class="h-7 w-7 transition-all duration-300"
 >
 	<title>LinkedIn</title>
 	<path
