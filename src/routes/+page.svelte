@@ -53,6 +53,14 @@
 		<div class="spread-identity">
 			<h2><span>Richard</span><span>Stromer</span></h2>
 		</div>
+		<aside class="facts">
+			<span>Core skills</span>
+			<ul>
+				<li>Product strategy</li>
+				<li>Interface design</li>
+				<li>Software engineering</li>
+			</ul>
+		</aside>
 		<nav aria-label="Social profiles">
 			{#each profiles as profile}
 				<a href={profile.url} tabindex={open ? 0 : -1}>
@@ -94,6 +102,27 @@
 			border-color 500ms,
 			background 500ms,
 			box-shadow 500ms;
+		animation: invite 5s 2s infinite;
+	}
+
+	@keyframes invite {
+		0%,
+		76%,
+		100% {
+			transform: rotate(0);
+		}
+		80% {
+			transform: rotate(-0.7deg) translateX(-2px);
+		}
+		84% {
+			transform: rotate(0.7deg) translateX(2px);
+		}
+		88% {
+			transform: rotate(-0.35deg) translateX(-1px);
+		}
+		92% {
+			transform: rotate(0);
+		}
 	}
 
 	.card::before {
@@ -291,6 +320,30 @@
 		gap: clamp(1rem, 2vw, 2rem);
 	}
 
+	.facts {
+		position: absolute;
+		bottom: clamp(1.5rem, 4vw, 3rem);
+		left: clamp(1.5rem, 4vw, 4rem);
+		display: flex;
+		gap: clamp(1.5rem, 4vw, 4rem);
+		align-items: baseline;
+		font-size: 0.72rem;
+	}
+
+	.facts > span {
+		color: light-dark(#66716d, #9ba8a3);
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+	}
+
+	.facts ul {
+		display: flex;
+		gap: clamp(1rem, 2vw, 2rem);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
 	.spread a {
 		position: relative;
 		display: flex;
@@ -343,6 +396,7 @@
 		background: transparent;
 		box-shadow: none;
 		pointer-events: none;
+		animation: none;
 	}
 
 	.open .card::before {
@@ -390,6 +444,7 @@
 		animation: rebuild-right 750ms 560ms both cubic-bezier(0.22, 1, 0.36, 1);
 	}
 	.open figcaption,
+	.open .facts,
 	.open .spread nav {
 		animation: rebuild-up 600ms 700ms both cubic-bezier(0.22, 1, 0.36, 1);
 	}
@@ -451,6 +506,19 @@
 		.spread a {
 			font-size: 0.65rem;
 		}
+		.facts {
+			bottom: 4.5rem;
+			left: 1.25rem;
+			display: block;
+		}
+		.facts > span {
+			display: block;
+			margin-bottom: 0.5rem;
+		}
+		.facts ul {
+			gap: 0.8rem;
+			font-size: 0.62rem;
+		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
@@ -462,6 +530,7 @@
 		.open .spread > figure,
 		.open h2 span,
 		.open figcaption,
+		.open .facts,
 		.open .spread nav {
 			animation: none;
 		}
