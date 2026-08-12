@@ -100,8 +100,13 @@
 	}
 
 	main {
+		--text-body: 0.75rem;
+		--text-title: clamp(1.4rem, 9cqw, 2.25rem);
+		--text-display: clamp(4rem, 12vw, 11rem);
 		position: relative;
 		width: min(24rem, 100%, calc((100svh - 4rem) * 0.63));
+		font-size: var(--text-body);
+		font-weight: 400;
 	}
 
 	.card {
@@ -178,10 +183,10 @@
 
 	.card h1 {
 		margin: 0;
-		font-size: clamp(1.4rem, 9cqw, 2.25rem);
-		font-weight: 400;
+		font-size: var(--text-title);
+		font-weight: inherit;
 		line-height: 1.05;
-		letter-spacing: -0.02em;
+		letter-spacing: -0.03em;
 		white-space: nowrap;
 	}
 
@@ -192,8 +197,6 @@
 	.card p {
 		margin: 0.65rem 0 0;
 		color: var(--muted);
-		font-size: 1rem;
-		letter-spacing: 0.015em;
 	}
 
 	.card nav {
@@ -292,8 +295,6 @@
 
 	figcaption {
 		padding: 0.8rem 0.35rem 0.45rem;
-		font-size: 0.78rem;
-		letter-spacing: 0.02em;
 	}
 
 	.spread-identity {
@@ -306,10 +307,10 @@
 
 	h2 {
 		margin: 0;
-		font-size: clamp(4rem, 12vw, 11rem);
-		font-weight: 400;
+		font-size: var(--text-display);
+		font-weight: inherit;
 		line-height: 0.78;
-		letter-spacing: -0.065em;
+		letter-spacing: -0.03em;
 	}
 
 	h2 span {
@@ -338,7 +339,6 @@
 		display: flex;
 		gap: clamp(1.5rem, 4vw, 4rem);
 		align-items: baseline;
-		font-size: 0.72rem;
 	}
 
 	.facts > span {
@@ -362,7 +362,6 @@
 		align-items: center;
 		padding: 0.65rem 0.5rem;
 		color: inherit;
-		font-size: 0.75rem;
 		text-decoration: none;
 		transition:
 			color 150ms,
@@ -381,6 +380,10 @@
 
 	.spread a :global(svg) {
 		width: 1rem;
+	}
+
+	small {
+		font-size: inherit;
 	}
 
 	.open .card {
@@ -403,6 +406,9 @@
 	}
 
 	@media (max-width: 42rem) {
+		main {
+			--text-display: clamp(4rem, 20vw, 6.5rem);
+		}
 		.spread > figure {
 			top: 34%;
 			left: 68%;
@@ -413,9 +419,6 @@
 			left: 1.25rem;
 			max-width: calc(100vw - 2.5rem);
 		}
-		h2 {
-			font-size: clamp(4rem, 20vw, 6.5rem);
-		}
 		h2 span:last-child {
 			margin: 0.12em 0 0 4vw;
 		}
@@ -423,9 +426,6 @@
 			right: 1.25rem;
 			bottom: 1.25rem;
 			gap: 1rem;
-		}
-		.spread a {
-			font-size: 0.65rem;
 		}
 		.facts {
 			bottom: 4.5rem;
@@ -438,7 +438,6 @@
 		}
 		.facts ul {
 			gap: 0.8rem;
-			font-size: 0.62rem;
 		}
 	}
 
