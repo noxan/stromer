@@ -14,26 +14,16 @@
 	let open = $state(false);
 	let rx = $state('0deg');
 	let ry = $state('0deg');
-	let mx = $state('50%');
-	let my = $state('50%');
 
 	function tilt(event: PointerEvent) {
 		if (event.pointerType === 'touch' || matchMedia('(prefers-reduced-motion: reduce)').matches)
 			return;
-		const x = event.clientX / innerWidth - 0.5;
-		const y = event.clientY / innerHeight - 0.5;
-		rx = `${y * 2}deg`;
-		ry = `${-x * 2}deg`;
-		mx = `${(x + 0.5) * 100}%`;
-		my = `${(y + 0.5) * 100}%`;
-	}
-
-	function resetTilt() {
-		rx = ry = '0deg';
+		rx = `${(event.clientY / innerHeight - 0.5) * 2}deg`;
+		ry = `${-(event.clientX / innerWidth - 0.5) * 2}deg`;
 	}
 </script>
 
-<svelte:window onpointermove={tilt} onblur={resetTilt} />
+<svelte:window onpointermove={tilt} onblur={() => (rx = ry = '0deg')} />
 
 <svelte:head>
 	<title>Richard Stromer</title>
@@ -41,7 +31,7 @@
 </svelte:head>
 
 <main class:open>
-	<article class="card" style:--rx={rx} style:--ry={ry} style:--mx={mx} style:--my={my}>
+	<article class="card" style:--rx={rx} style:--ry={ry}>
 		<button class="expand" onclick={() => (open = true)} aria-label="Open profile"></button>
 		<picture>
 			<source srcset="/me.webp" type="image/webp" />
@@ -54,7 +44,7 @@
 				<p>Builds digital products.</p>
 			</div>
 			<nav aria-label="Social profiles">
-				{#each profiles as profile}
+				{#each profiles as profile (profile.url)}
 					<a href={profile.url} aria-label={profile.name} title={profile.name}>
 						<profile.icon />
 					</a>
@@ -84,7 +74,7 @@
 			</ul>
 		</aside>
 		<nav aria-label="Social profiles">
-			{#each profiles as profile}
+			{#each profiles as profile (profile.url)}
 				<a href={profile.url} tabindex={open ? 0 : -1}>
 					<profile.icon /><span>{profile.name}</span>
 				</a>
@@ -107,8 +97,6 @@
 	.card {
 		--rx: 0deg;
 		--ry: 0deg;
-		--mx: 50%;
-		--my: 50%;
 		position: relative;
 		display: flex;
 		flex-direction: column;
@@ -130,32 +118,8 @@
 			background 500ms,
 			box-shadow 220ms,
 			transform 220ms ease-out;
-		animation: invite 5s 2s infinite;
 		transform: perspective(60rem) rotateX(var(--rx)) rotateY(var(--ry));
 		transform-style: preserve-3d;
-	}
-
-	@keyframes invite {
-		0%,
-		76%,
-		100% {
-			transform: perspective(60rem) rotateX(var(--rx)) rotateY(var(--ry)) rotate(0);
-		}
-		80% {
-			transform: perspective(60rem) rotateX(var(--rx)) rotateY(var(--ry)) rotate(-0.7deg)
-				translateX(-2px);
-		}
-		84% {
-			transform: perspective(60rem) rotateX(var(--rx)) rotateY(var(--ry)) rotate(0.7deg)
-				translateX(2px);
-		}
-		88% {
-			transform: perspective(60rem) rotateX(var(--rx)) rotateY(var(--ry)) rotate(-0.35deg)
-				translateX(-1px);
-		}
-		92% {
-			transform: perspective(60rem) rotateX(var(--rx)) rotateY(var(--ry)) rotate(0);
-		}
 	}
 
 	.card::before {
@@ -170,22 +134,10 @@
 		transition: opacity 250ms;
 	}
 
-	.card::after {
-		position: absolute;
-		z-index: 2;
-		inset: 0;
-		border-radius: inherit;
-		background: radial-gradient(circle at var(--mx) var(--my), #fff8, transparent 38%);
-		content: '';
-		opacity: 0.08;
-		pointer-events: none;
-	}
-
 	main:not(.open):hover .card {
-		animation: none;
 		box-shadow: 0 1.5rem 4rem #0c17132b;
-		transform: perspective(60rem) translateY(-6px) rotateX(calc(var(--rx) * 1.8))
-			rotateY(calc(var(--ry) * 1.8)) scale(1.01);
+		transform: perspective(60rem) translateY(-4px) rotateX(calc(var(--rx) * 1.8))
+			rotateY(calc(var(--ry) * 1.8));
 	}
 
 	.expand {
@@ -293,13 +245,27 @@
 		width: min(36vw, 58svh);
 		margin: 0;
 		padding: 0.55rem;
-		color: #282823;
-		background: #f4f1e8;
+		border: 1px solid light-dark(#d8ddd7, #2d3734);
+		border-radius: 0.25rem;
+		color: inherit;
+		background: light-dark(#f8f9f6, #171d1b);
 		box-shadow: 0 1rem 3rem #0c171318;
-		transform: perspective(60rem) translate(-50%, -50%) rotate(2deg) rotateX(var(--rx))
-			rotateY(var(--ry));
+		transform: perspective(60rem) translate(-50%, -50%) rotateX(var(--rx)) rotateY(var(--ry));
 		transform-style: preserve-3d;
-		transition: transform 180ms ease-out;
+		transition:
+			box-shadow 180ms,
+			transform 180ms ease-out;
+	}
+
+	.spread > figure::after {
+		position: absolute;
+		bottom: -1px;
+		left: 50%;
+		width: 4.5rem;
+		height: 2px;
+		background: #789188;
+		content: '';
+		transform: translateX(-50%);
 	}
 
 	.close {
@@ -318,7 +284,7 @@
 	.spread figure img {
 		width: 100%;
 		height: auto;
-		border-radius: 0;
+		border-radius: 0.15rem;
 		object-fit: contain;
 	}
 
@@ -352,9 +318,7 @@
 
 	h2 span:last-child {
 		margin-left: 8vw;
-		color: light-dark(#eef0ec, #111514);
-		-webkit-text-stroke: 1px light-dark(#18201f, #e7ecea);
-		paint-order: stroke fill;
+		color: #789188;
 	}
 
 	.spread nav {
@@ -439,9 +403,8 @@
 
 	.open .card {
 		opacity: 0;
-		transform: perspective(60rem) rotateX(var(--rx)) rotateY(var(--ry)) scale(0.97);
+		transform: perspective(60rem) rotateX(var(--rx)) rotateY(var(--ry)) scale(0.98);
 		pointer-events: none;
-		animation: none;
 	}
 
 	.open .spread {
@@ -453,8 +416,8 @@
 
 	.open .spread > figure:hover {
 		box-shadow: 0 1.5rem 4rem #0c17132b;
-		transform: perspective(60rem) translate(-50%, calc(-50% - 6px)) rotate(2deg)
-			rotateX(calc(var(--rx) * 1.8)) rotateY(calc(var(--ry) * 1.8)) scale(1.01);
+		transform: perspective(60rem) translate(-50%, calc(-50% - 4px)) rotateX(calc(var(--rx) * 1.8))
+			rotateY(calc(var(--ry) * 1.8));
 	}
 
 	@media (max-width: 42rem) {

@@ -20,9 +20,7 @@ body {
 	min-height: 100svh;
 	place-items: center;
 	padding: 2rem;
-	background:
-		radial-gradient(circle at 15% 10%, light-dark(#ffffff, #1d2523) 0, transparent 38%),
-		light-dark(#eef0ec, #111514);
+	background: light-dark(#eef0ec, #111514);
 }
 
 :focus-visible {
