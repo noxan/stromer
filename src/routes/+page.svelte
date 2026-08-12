@@ -126,7 +126,7 @@
 		background: var(--surface);
 		box-shadow: 0 1rem 3rem var(--shadow);
 		container-type: inline-size;
-		text-align: center;
+		text-align: left;
 		transition:
 			opacity 400ms ease,
 			box-shadow 220ms,
@@ -138,12 +138,11 @@
 	.card::before {
 		position: absolute;
 		bottom: -1px;
-		left: 50%;
+		left: clamp(1.5rem, 5vw, 2.5rem);
 		width: 4.5rem;
 		height: 2px;
 		background: var(--accent);
 		content: '';
-		transform: translateX(-50%);
 		transition: opacity 250ms;
 	}
 
@@ -177,8 +176,9 @@
 
 	.card section {
 		display: flex;
+		width: 100%;
 		flex-direction: column;
-		align-items: center;
+		align-items: flex-start;
 	}
 
 	.card h1 {
@@ -204,7 +204,7 @@
 		z-index: 3;
 		display: flex;
 		gap: 1.75rem;
-		justify-content: center;
+		justify-content: flex-start;
 		margin-top: 2.5rem;
 	}
 
