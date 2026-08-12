@@ -22,8 +22,8 @@
 			return;
 		const x = event.clientX / innerWidth - 0.5;
 		const y = event.clientY / innerHeight - 0.5;
-		rx = `${-y * 2}deg`;
-		ry = `${x * 2}deg`;
+		rx = `${y * 2}deg`;
+		ry = `${-x * 2}deg`;
 		mx = `${(x + 0.5) * 100}%`;
 		my = `${(y + 0.5) * 100}%`;
 	}
@@ -181,7 +181,7 @@
 		pointer-events: none;
 	}
 
-	.card:hover {
+	main:not(.open):hover .card {
 		animation: none;
 		box-shadow: 0 1.5rem 4rem #0c17132b;
 		transform: perspective(60rem) translateY(-6px) rotateX(calc(var(--rx) * 1.8))
@@ -348,31 +348,6 @@
 		position: relative;
 		display: block;
 		width: max-content;
-	}
-
-	h2 span::before,
-	h2 span::after {
-		position: absolute;
-		z-index: -1;
-		content: '';
-		opacity: 0.28;
-		pointer-events: none;
-	}
-
-	h2 span::before {
-		top: 0.08em;
-		left: -2rem;
-		width: calc(100% + 4rem);
-		border-top: 1px solid currentColor;
-		border-bottom: 1px solid currentColor;
-		height: 0.72em;
-	}
-
-	h2 span::after {
-		top: -0.08em;
-		left: -0.6rem;
-		height: 1em;
-		border-left: 1px solid currentColor;
 	}
 
 	h2 span:last-child {
