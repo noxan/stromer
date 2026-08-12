@@ -43,13 +43,15 @@
 	</article>
 
 	<div class="spread" aria-hidden={!open}>
-		<picture>
-			<source srcset="/me.webp" type="image/webp" />
-			<img src="/me.jpg" width="480" height="480" alt="" />
-		</picture>
+		<figure>
+			<picture>
+				<source srcset="/me.webp" type="image/webp" />
+				<img src="/me.jpg" width="480" height="480" alt="" />
+			</picture>
+			<figcaption>Builds digital products.</figcaption>
+		</figure>
 		<div class="spread-identity">
 			<h2><span>Richard</span><span>Stromer</span></h2>
-			<p>Builds digital products.</p>
 		</div>
 		<nav aria-label="Social profiles">
 			{#each profiles as profile}
@@ -197,18 +199,34 @@
 		pointer-events: none;
 	}
 
-	.spread > picture {
+	.spread > figure {
 		position: absolute;
 		top: 50%;
 		left: 68%;
 		width: min(36vw, 58svh);
-		aspect-ratio: 1;
+		margin: 0;
+		padding: 0.55rem;
+		color: #282823;
+		background: #f4f1e8;
+		box-shadow: 0 1rem 3rem #0c171318;
 		transform: translate(-50%, -50%) rotate(2deg);
 	}
 
-	.spread img {
+	.spread figure picture {
+		display: block;
+	}
+
+	.spread figure img {
 		width: 100%;
-		height: 100%;
+		height: auto;
+		border-radius: 0;
+		object-fit: contain;
+	}
+
+	figcaption {
+		padding: 0.8rem 0.35rem 0.45rem;
+		font-size: 0.78rem;
+		letter-spacing: 0.02em;
 	}
 
 	.spread-identity {
@@ -228,7 +246,34 @@
 	}
 
 	h2 span {
+		position: relative;
 		display: block;
+		width: max-content;
+	}
+
+	h2 span::before,
+	h2 span::after {
+		position: absolute;
+		z-index: -1;
+		content: '';
+		opacity: 0.28;
+		pointer-events: none;
+	}
+
+	h2 span::before {
+		top: 0.08em;
+		left: -2rem;
+		width: calc(100% + 4rem);
+		border-top: 1px solid currentColor;
+		border-bottom: 1px solid currentColor;
+		height: 0.72em;
+	}
+
+	h2 span::after {
+		top: -0.08em;
+		left: -0.6rem;
+		height: 1em;
+		border-left: 1px solid currentColor;
 	}
 
 	h2 span:last-child {
@@ -236,11 +281,6 @@
 		color: light-dark(#eef0ec, #111514);
 		-webkit-text-stroke: 1px light-dark(#18201f, #e7ecea);
 		paint-order: stroke fill;
-	}
-
-	.spread-identity p {
-		margin: clamp(2rem, 5vw, 4rem) 0 0;
-		font-size: clamp(1rem, 1.5vw, 1.25rem);
 	}
 
 	.spread nav {
@@ -252,12 +292,46 @@
 	}
 
 	.spread a {
+		position: relative;
 		display: flex;
 		gap: 0.45rem;
 		align-items: center;
 		color: inherit;
 		font-size: 0.75rem;
 		text-decoration: none;
+		transition:
+			color 180ms,
+			transform 180ms;
+	}
+
+	.spread a::after {
+		position: absolute;
+		right: 0;
+		bottom: -0.35rem;
+		left: 0;
+		height: 1px;
+		background: currentColor;
+		content: '';
+		transform: scaleX(0);
+		transform-origin: right;
+		transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	.spread a:hover,
+	.spread a:focus-visible {
+		color: #789188;
+		transform: translateY(-3px);
+	}
+
+	.spread a:hover::after,
+	.spread a:focus-visible::after {
+		transform: scaleX(1);
+		transform-origin: left;
+	}
+
+	.spread a:active {
+		transform: translateY(0) scale(0.94);
+		transition-duration: 60ms;
 	}
 
 	.spread a :global(svg) {
@@ -306,7 +380,7 @@
 		pointer-events: auto;
 	}
 
-	.open .spread > picture {
+	.open .spread > figure {
 		animation: rebuild-image 900ms 300ms both cubic-bezier(0.22, 1, 0.36, 1);
 	}
 	.open h2 span:first-child {
@@ -315,7 +389,7 @@
 	.open h2 span:last-child {
 		animation: rebuild-right 750ms 560ms both cubic-bezier(0.22, 1, 0.36, 1);
 	}
-	.open .spread-identity p,
+	.open figcaption,
 	.open .spread nav {
 		animation: rebuild-up 600ms 700ms both cubic-bezier(0.22, 1, 0.36, 1);
 	}
@@ -353,7 +427,7 @@
 	}
 
 	@media (max-width: 42rem) {
-		.spread > picture {
+		.spread > figure {
 			top: 34%;
 			left: 68%;
 			width: 58vw;
@@ -385,9 +459,9 @@
 			transition: none;
 		}
 
-		.open .spread > picture,
+		.open .spread > figure,
 		.open h2 span,
-		.open .spread-identity p,
+		.open figcaption,
 		.open .spread nav {
 			animation: none;
 		}
