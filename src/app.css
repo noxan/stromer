@@ -1,8 +1,15 @@
 :root {
+	--ink: light-dark(#393530, #e4e0d9);
+	--muted: light-dark(#817970, #aaa198);
+	--page: light-dark(#e9e5de, #1a1816);
+	--surface: light-dark(#f4f1eb, #24211e);
+	--border: light-dark(#d4cdc3, #3c3732);
+	--accent: light-dark(#9d9386, #aaa093);
+	--shadow: light-dark(#342d2412, #00000030);
 	font-family: ui-sans-serif, system-ui, sans-serif;
 	color-scheme: light dark;
-	color: light-dark(#18201f, #e7ecea);
-	background: light-dark(#eef0ec, #111514);
+	color: var(--ink);
+	background: var(--page);
 	font-synthesis: none;
 	-webkit-font-smoothing: antialiased;
 }
@@ -20,7 +27,7 @@ body {
 	min-height: 100svh;
 	place-items: center;
 	padding: 2rem;
-	background: light-dark(#eef0ec, #111514);
+	background: var(--page);
 }
 
 :focus-visible {

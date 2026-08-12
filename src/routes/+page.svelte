@@ -106,16 +106,14 @@
 		width: 100%;
 		aspect-ratio: 54 / 85.6;
 		padding: clamp(2rem, 6vw, 4.5rem) clamp(1.5rem, 5vw, 2.5rem);
-		border: 1px solid light-dark(#d8ddd7, #2d3734);
+		border: 1px solid var(--border);
 		border-radius: 0.25rem;
-		background: light-dark(#f8f9f6e8, #171d1be8);
-		box-shadow: 0 1.5rem 4rem #0c17130b;
+		background: var(--surface);
+		box-shadow: 0 1rem 3rem var(--shadow);
 		container-type: inline-size;
 		text-align: center;
 		transition:
 			opacity 400ms ease,
-			border-color 500ms,
-			background 500ms,
 			box-shadow 220ms,
 			transform 220ms ease-out;
 		transform: perspective(60rem) rotateX(var(--rx)) rotateY(var(--ry));
@@ -128,16 +126,16 @@
 		left: 50%;
 		width: 4.5rem;
 		height: 2px;
-		background: #789188;
+		background: var(--accent);
 		content: '';
 		transform: translateX(-50%);
 		transition: opacity 250ms;
 	}
 
 	main:not(.open):hover .card {
-		box-shadow: 0 1.5rem 4rem #0c17132b;
-		transform: perspective(60rem) translateY(-4px) rotateX(calc(var(--rx) * 1.8))
-			rotateY(calc(var(--ry) * 1.8));
+		box-shadow: 0 1.25rem 3rem var(--shadow);
+		transform: perspective(60rem) translateY(-2px) rotateX(calc(var(--rx) * 1.35))
+			rotateY(calc(var(--ry) * 1.35));
 	}
 
 	.expand {
@@ -152,7 +150,7 @@
 	img {
 		display: block;
 		border-radius: 0.25rem;
-		filter: saturate(0.8) contrast(1.03);
+		filter: saturate(0.65) contrast(1.02);
 		object-fit: cover;
 	}
 
@@ -160,16 +158,6 @@
 	.card > section {
 		position: relative;
 		z-index: 2;
-	}
-
-	.card > picture,
-	.card h1 span,
-	.card p,
-	.card nav {
-		transition:
-			opacity 400ms,
-			filter 500ms,
-			transform 700ms cubic-bezier(0.76, 0, 0.24, 1);
 	}
 
 	.card section {
@@ -181,7 +169,7 @@
 	.card h1 {
 		margin: 0;
 		font-size: clamp(1.4rem, 9cqw, 2.25rem);
-		font-weight: 500;
+		font-weight: 400;
 		line-height: 1.05;
 		letter-spacing: -0.02em;
 		white-space: nowrap;
@@ -193,7 +181,7 @@
 
 	.card p {
 		margin: 0.65rem 0 0;
-		color: light-dark(#66716d, #9ba8a3);
+		color: var(--muted);
 		font-size: 1rem;
 		letter-spacing: 0.015em;
 	}
@@ -210,16 +198,13 @@
 	.card a {
 		display: block;
 		width: 1.5rem;
-		color: light-dark(#66716d, #9ba8a3);
-		transition:
-			color 150ms,
-			transform 150ms;
+		color: var(--muted);
+		transition: color 150ms;
 	}
 
 	.card a:hover,
 	.card a:focus-visible {
-		color: light-dark(#18201f, #e7ecea);
-		transform: translateY(-2px);
+		color: var(--ink);
 	}
 
 	.spread {
@@ -245,11 +230,11 @@
 		width: min(36vw, 58svh);
 		margin: 0;
 		padding: 0.55rem;
-		border: 1px solid light-dark(#d8ddd7, #2d3734);
+		border: 1px solid var(--border);
 		border-radius: 0.25rem;
 		color: inherit;
-		background: light-dark(#f8f9f6, #171d1b);
-		box-shadow: 0 1rem 3rem #0c171318;
+		background: var(--surface);
+		box-shadow: 0 1rem 3rem var(--shadow);
 		transform: perspective(60rem) translate(-50%, -50%) rotateX(var(--rx)) rotateY(var(--ry));
 		transform-style: preserve-3d;
 		transition:
@@ -263,7 +248,7 @@
 		left: 50%;
 		width: 4.5rem;
 		height: 2px;
-		background: #789188;
+		background: var(--accent);
 		content: '';
 		transform: translateX(-50%);
 	}
@@ -305,7 +290,7 @@
 	h2 {
 		margin: 0;
 		font-size: clamp(4rem, 12vw, 11rem);
-		font-weight: 500;
+		font-weight: 400;
 		line-height: 0.78;
 		letter-spacing: -0.065em;
 	}
@@ -318,7 +303,7 @@
 
 	h2 span:last-child {
 		margin-left: 8vw;
-		color: #789188;
+		color: var(--accent);
 	}
 
 	.spread nav {
@@ -340,7 +325,7 @@
 	}
 
 	.facts > span {
-		color: light-dark(#66716d, #9ba8a3);
+		color: var(--muted);
 		letter-spacing: 0.1em;
 		text-transform: uppercase;
 	}
@@ -362,39 +347,12 @@
 		color: inherit;
 		font-size: 0.75rem;
 		text-decoration: none;
-		transition:
-			color 180ms,
-			transform 180ms;
-	}
-
-	.spread a::after {
-		position: absolute;
-		right: 0;
-		bottom: 0.25rem;
-		left: 0;
-		height: 1px;
-		background: currentColor;
-		content: '';
-		transform: scaleX(0);
-		transform-origin: right;
-		transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+		transition: color 180ms;
 	}
 
 	.spread a:hover,
 	.spread a:focus-visible {
-		color: #789188;
-		transform: translateY(-3px);
-	}
-
-	.spread a:hover::after,
-	.spread a:focus-visible::after {
-		transform: scaleX(1);
-		transform-origin: left;
-	}
-
-	.spread a:active {
-		transform: translateY(0) scale(0.94);
-		transition-duration: 60ms;
+		color: var(--accent);
 	}
 
 	.spread a :global(svg) {
@@ -415,9 +373,9 @@
 	}
 
 	.open .spread > figure:hover {
-		box-shadow: 0 1.5rem 4rem #0c17132b;
-		transform: perspective(60rem) translate(-50%, calc(-50% - 4px)) rotateX(calc(var(--rx) * 1.8))
-			rotateY(calc(var(--ry) * 1.8));
+		box-shadow: 0 1.25rem 3rem var(--shadow);
+		transform: perspective(60rem) translate(-50%, calc(-50% - 2px)) rotateX(calc(var(--rx) * 1.35))
+			rotateY(calc(var(--ry) * 1.35));
 	}
 
 	@media (max-width: 42rem) {
