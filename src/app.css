@@ -1,56 +1,31 @@
-@import '@fontsource/space-grotesk';
-
-@import 'tailwindcss';
-
 :root {
-	--gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-	--gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-	--shadow-soft: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+	font-family: ui-sans-serif, system-ui, sans-serif;
+	color-scheme: light dark;
+	color: light-dark(#18201f, #e7ecea);
+	background: light-dark(#eef0ec, #111514);
+	font-synthesis: none;
+	-webkit-font-smoothing: antialiased;
 }
 
 * {
-	scroll-behavior: smooth;
+	box-sizing: border-box;
 }
 
 body {
-	font-optical-sizing: auto;
-	font-family:
-		'Space Grotesk',
-		system-ui,
-		-apple-system,
-		sans-serif;
-	letter-spacing: -0.025em;
-	font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+	margin: 0;
 }
 
-/* Custom scrollbar for webkit browsers */
-::-webkit-scrollbar {
-	width: 8px;
+.page {
+	display: grid;
+	min-height: 100svh;
+	place-items: center;
+	padding: 2rem;
+	background:
+		radial-gradient(circle at 15% 10%, light-dark(#ffffff, #1d2523) 0, transparent 38%),
+		light-dark(#eef0ec, #111514);
 }
 
-::-webkit-scrollbar-track {
-	background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-	background: rgba(156, 163, 175, 0.3);
-	border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-	background: rgba(156, 163, 175, 0.5);
-}
-
-/* Smooth focus transitions */
-*:focus {
-	outline: 2px solid transparent;
-	outline-offset: 2px;
-}
-
-*:focus-visible {
-	outline: 2px solid #3b82f6;
-	outline-offset: 2px;
+:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 4px;
 }
