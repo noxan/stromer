@@ -12,7 +12,28 @@
 	];
 
 	let open = $state(false);
+	let rx = $state('0deg');
+	let ry = $state('0deg');
+	let mx = $state('50%');
+	let my = $state('50%');
+
+	function tilt(event: PointerEvent) {
+		if (event.pointerType === 'touch' || matchMedia('(prefers-reduced-motion: reduce)').matches)
+			return;
+		const x = event.clientX / innerWidth - 0.5;
+		const y = event.clientY / innerHeight - 0.5;
+		rx = `${-y * 2}deg`;
+		ry = `${x * 2}deg`;
+		mx = `${(x + 0.5) * 100}%`;
+		my = `${(y + 0.5) * 100}%`;
+	}
+
+	function resetTilt() {
+		rx = ry = '0deg';
+	}
 </script>
+
+<svelte:window onpointermove={tilt} onblur={resetTilt} />
 
 <svelte:head>
 	<title>Richard Stromer</title>
@@ -20,7 +41,7 @@
 </svelte:head>
 
 <main class:open>
-	<article class="card">
+	<article class="card" style:--rx={rx} style:--ry={ry} style:--mx={mx} style:--my={my}>
 		<button class="expand" onclick={() => (open = true)} aria-label="Open profile"></button>
 		<picture>
 			<source srcset="/me.webp" type="image/webp" />
@@ -43,7 +64,8 @@
 	</article>
 
 	<div class="spread" aria-hidden={!open}>
-		<figure>
+		<figure style:--rx={rx} style:--ry={ry}>
+			<button class="close" onclick={() => (open = false)} aria-label="Close profile"></button>
 			<picture>
 				<source srcset="/me.webp" type="image/webp" />
 				<img src="/me.jpg" width="480" height="480" alt="" />
@@ -83,6 +105,10 @@
 	}
 
 	.card {
+		--rx: 0deg;
+		--ry: 0deg;
+		--mx: 50%;
+		--my: 50%;
 		position: relative;
 		display: flex;
 		flex-direction: column;
@@ -99,29 +125,36 @@
 		container-type: inline-size;
 		text-align: center;
 		transition:
+			opacity 400ms ease,
 			border-color 500ms,
 			background 500ms,
-			box-shadow 500ms;
+			box-shadow 220ms,
+			transform 220ms ease-out;
 		animation: invite 5s 2s infinite;
+		transform: perspective(60rem) rotateX(var(--rx)) rotateY(var(--ry));
+		transform-style: preserve-3d;
 	}
 
 	@keyframes invite {
 		0%,
 		76%,
 		100% {
-			transform: rotate(0);
+			transform: perspective(60rem) rotateX(var(--rx)) rotateY(var(--ry)) rotate(0);
 		}
 		80% {
-			transform: rotate(-0.7deg) translateX(-2px);
+			transform: perspective(60rem) rotateX(var(--rx)) rotateY(var(--ry)) rotate(-0.7deg)
+				translateX(-2px);
 		}
 		84% {
-			transform: rotate(0.7deg) translateX(2px);
+			transform: perspective(60rem) rotateX(var(--rx)) rotateY(var(--ry)) rotate(0.7deg)
+				translateX(2px);
 		}
 		88% {
-			transform: rotate(-0.35deg) translateX(-1px);
+			transform: perspective(60rem) rotateX(var(--rx)) rotateY(var(--ry)) rotate(-0.35deg)
+				translateX(-1px);
 		}
 		92% {
-			transform: rotate(0);
+			transform: perspective(60rem) rotateX(var(--rx)) rotateY(var(--ry)) rotate(0);
 		}
 	}
 
@@ -135,6 +168,24 @@
 		content: '';
 		transform: translateX(-50%);
 		transition: opacity 250ms;
+	}
+
+	.card::after {
+		position: absolute;
+		z-index: 2;
+		inset: 0;
+		border-radius: inherit;
+		background: radial-gradient(circle at var(--mx) var(--my), #fff8, transparent 38%);
+		content: '';
+		opacity: 0.08;
+		pointer-events: none;
+	}
+
+	.card:hover {
+		animation: none;
+		box-shadow: 0 1.5rem 4rem #0c17132b;
+		transform: perspective(60rem) translateY(-6px) rotateX(calc(var(--rx) * 1.8))
+			rotateY(calc(var(--ry) * 1.8)) scale(1.01);
 	}
 
 	.expand {
@@ -226,9 +277,16 @@
 		visibility: hidden;
 		opacity: 0;
 		pointer-events: none;
+		transform: scale(0.98);
+		transition:
+			opacity 400ms ease,
+			transform 400ms ease,
+			visibility 400ms;
 	}
 
 	.spread > figure {
+		--rx: 0deg;
+		--ry: 0deg;
 		position: absolute;
 		top: 50%;
 		left: 68%;
@@ -238,7 +296,19 @@
 		color: #282823;
 		background: #f4f1e8;
 		box-shadow: 0 1rem 3rem #0c171318;
-		transform: translate(-50%, -50%) rotate(2deg);
+		transform: perspective(60rem) translate(-50%, -50%) rotate(2deg) rotateX(var(--rx))
+			rotateY(var(--ry));
+		transform-style: preserve-3d;
+		transition: transform 180ms ease-out;
+	}
+
+	.close {
+		position: absolute;
+		z-index: 3;
+		inset: 0;
+		border: 0;
+		background: transparent;
+		cursor: pointer;
 	}
 
 	.spread figure picture {
@@ -349,6 +419,7 @@
 		display: flex;
 		gap: 0.45rem;
 		align-items: center;
+		padding: 0.65rem 0.5rem;
 		color: inherit;
 		font-size: 0.75rem;
 		text-decoration: none;
@@ -360,7 +431,7 @@
 	.spread a::after {
 		position: absolute;
 		right: 0;
-		bottom: -0.35rem;
+		bottom: 0.25rem;
 		left: 0;
 		height: 1px;
 		background: currentColor;
@@ -392,93 +463,23 @@
 	}
 
 	.open .card {
-		border-color: transparent;
-		background: transparent;
-		box-shadow: none;
+		opacity: 0;
+		transform: perspective(60rem) rotateX(var(--rx)) rotateY(var(--ry)) scale(0.97);
 		pointer-events: none;
 		animation: none;
-	}
-
-	.open .card::before {
-		opacity: 0;
-	}
-	.open .card > picture {
-		opacity: 0;
-		filter: blur(8px);
-		transform: translate(38vw, -32vh) rotate(14deg) scale(0.7);
-	}
-	.open .card h1 span:first-child {
-		opacity: 0;
-		filter: blur(6px);
-		transform: translate(-38vw, 12vh) rotate(-8deg);
-	}
-	.open .card h1 span:last-child {
-		opacity: 0;
-		filter: blur(6px);
-		transform: translate(34vw, 20vh) rotate(7deg);
-	}
-	.open .card p {
-		opacity: 0;
-		filter: blur(4px);
-		transform: translateY(28vh);
-	}
-	.open .card nav {
-		opacity: 0;
-		filter: blur(4px);
-		transform: translate(30vw, 34vh);
 	}
 
 	.open .spread {
 		visibility: visible;
 		opacity: 1;
 		pointer-events: auto;
+		transform: scale(1);
 	}
 
-	.open .spread > figure {
-		animation: rebuild-image 900ms 300ms both cubic-bezier(0.22, 1, 0.36, 1);
-	}
-	.open h2 span:first-child {
-		animation: rebuild-left 750ms 450ms both cubic-bezier(0.22, 1, 0.36, 1);
-	}
-	.open h2 span:last-child {
-		animation: rebuild-right 750ms 560ms both cubic-bezier(0.22, 1, 0.36, 1);
-	}
-	.open figcaption,
-	.open .facts,
-	.open .spread nav {
-		animation: rebuild-up 600ms 700ms both cubic-bezier(0.22, 1, 0.36, 1);
-	}
-
-	@keyframes rebuild-image {
-		from {
-			opacity: 0;
-			filter: blur(12px);
-			transform: translate(-5%, -85%) rotate(14deg) scale(0.6);
-		}
-	}
-
-	@keyframes rebuild-left {
-		from {
-			opacity: 0;
-			filter: blur(10px);
-			transform: translateX(-30vw) rotate(-6deg);
-		}
-	}
-
-	@keyframes rebuild-right {
-		from {
-			opacity: 0;
-			filter: blur(10px);
-			transform: translateX(30vw) rotate(6deg);
-		}
-	}
-
-	@keyframes rebuild-up {
-		from {
-			opacity: 0;
-			filter: blur(6px);
-			transform: translateY(4rem);
-		}
+	.open .spread > figure:hover {
+		box-shadow: 0 1.5rem 4rem #0c17132b;
+		transform: perspective(60rem) translate(-50%, calc(-50% - 6px)) rotate(2deg)
+			rotateX(calc(var(--rx) * 1.8)) rotateY(calc(var(--ry) * 1.8)) scale(1.01);
 	}
 
 	@media (max-width: 42rem) {
@@ -525,14 +526,6 @@
 		.card,
 		.spread {
 			transition: none;
-		}
-
-		.open .spread > figure,
-		.open h2 span,
-		.open figcaption,
-		.open .facts,
-		.open .spread nav {
-			animation: none;
 		}
 	}
 </style>
