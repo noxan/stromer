@@ -24,8 +24,10 @@
 	</picture>
 
 	<section>
-		<h1>Richard Stromer</h1>
-		<p>Builds digital products.</p>
+		<div class="identity">
+			<h1>Richard Stromer</h1>
+			<p>Builds digital products.</p>
+		</div>
 		<nav aria-label="Social profiles">
 			{#each profiles as profile}
 				<a href={profile.url} aria-label={profile.name} title={profile.name}>
@@ -73,17 +75,23 @@
 		object-fit: cover;
 	}
 
+	section {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
 	h1 {
 		margin: 0;
 		font-size: clamp(1.4rem, 9cqw, 2.25rem);
-		font-weight: 540;
-		line-height: 0.95;
-		letter-spacing: -0.055em;
+		font-weight: 500;
+		line-height: 1.05;
+		letter-spacing: -0.02em;
 		white-space: nowrap;
 	}
 
 	p {
-		margin: 1rem 0 2.25rem;
+		margin: 0.65rem 0 0;
 		color: light-dark(#66716d, #9ba8a3);
 		font-size: 1rem;
 		letter-spacing: 0.015em;
@@ -93,6 +101,7 @@
 		display: flex;
 		gap: 1.75rem;
 		justify-content: center;
+		margin-top: 2.5rem;
 	}
 
 	a {
