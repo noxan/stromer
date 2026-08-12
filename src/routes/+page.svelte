@@ -14,8 +14,10 @@
 	let open = $state(false);
 	let rx = $state('0deg');
 	let ry = $state('0deg');
+	let socialHover = false;
 
 	function tilt(event: PointerEvent) {
+		if (socialHover) return;
 		if (event.pointerType === 'touch' || matchMedia('(prefers-reduced-motion: reduce)').matches)
 			return;
 		rx = `${(event.clientY / innerHeight - 0.5) * 2}deg`;
@@ -43,7 +45,11 @@
 				<h1><span>Richard</span> <span>Stromer</span></h1>
 				<p>Builds digital products.</p>
 			</div>
-			<nav aria-label="Social profiles">
+			<nav
+				aria-label="Social profiles"
+				onpointerenter={() => (socialHover = true)}
+				onpointerleave={() => (socialHover = false)}
+			>
 				{#each profiles as profile (profile.url)}
 					<a href={profile.url} aria-label={profile.name} title={profile.name}>
 						<profile.icon />
@@ -73,7 +79,11 @@
 				<li>Founder <small>(Forbes U30)</small></li>
 			</ul>
 		</aside>
-		<nav aria-label="Social profiles">
+		<nav
+			aria-label="Social profiles"
+			onpointerenter={() => (socialHover = true)}
+			onpointerleave={() => (socialHover = false)}
+		>
 			{#each profiles as profile (profile.url)}
 				<a href={profile.url} tabindex={open ? 0 : -1}>
 					<profile.icon /><span>{profile.name}</span>
@@ -199,12 +209,19 @@
 		display: block;
 		width: 1.5rem;
 		color: var(--muted);
-		transition: color 150ms;
+		transition:
+			color 150ms,
+			transform 150ms ease;
 	}
 
 	.card a:hover,
 	.card a:focus-visible {
 		color: var(--ink);
+		transform: scale(1.05);
+	}
+
+	.card a:active {
+		transform: scale(0.96);
 	}
 
 	.spread {
@@ -347,12 +364,19 @@
 		color: inherit;
 		font-size: 0.75rem;
 		text-decoration: none;
-		transition: color 180ms;
+		transition:
+			color 150ms,
+			transform 150ms ease;
 	}
 
 	.spread a:hover,
 	.spread a:focus-visible {
 		color: var(--accent);
+		transform: scale(1.03);
+	}
+
+	.spread a:active {
+		transform: scale(0.97);
 	}
 
 	.spread a :global(svg) {
