@@ -76,11 +76,11 @@
 			<h2><span>Richard</span><span>Stromer</span></h2>
 		</div>
 		<aside class="facts">
-			<span>Core skills</span>
+			<span>About</span>
 			<ul>
-				<li>Product strategy</li>
-				<li>Interface design</li>
-				<li>Software engineering</li>
+				<li>Applied AI systems</li>
+				<li>Product & engineering leadership</li>
+				<li>Founder <small>(Forbes U30)</small></li>
 			</ul>
 		</aside>
 		<nav aria-label="Social profiles">
