@@ -115,16 +115,16 @@
 		position: relative;
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		gap: clamp(2rem, 6vw, 3rem);
+		align-items: stretch;
+		justify-content: space-between;
 		width: 100%;
 		aspect-ratio: 54 / 85.6;
-		padding: clamp(2rem, 6vw, 4.5rem) clamp(1.5rem, 5vw, 2.5rem);
-		border: 1px solid var(--border);
-		border-radius: 0.25rem;
+		padding: 0;
+		border: 0;
+		border-radius: 0.4rem;
 		background: var(--surface);
-		box-shadow: 0 1rem 3rem var(--shadow);
+		box-shadow: 0 2.5rem 5rem var(--shadow);
+		overflow: hidden;
 		container-type: inline-size;
 		text-align: left;
 		transition:
@@ -135,15 +135,12 @@
 		transform-style: preserve-3d;
 	}
 
-	.card::before {
+	.card::after {
 		position: absolute;
-		bottom: -1px;
-		left: clamp(1.5rem, 5vw, 2.5rem);
-		width: 4.5rem;
-		height: 2px;
-		background: var(--accent);
+		inset: 0;
+		background: linear-gradient(115deg, transparent 35%, rgb(255 255 255 / 8%), transparent 65%);
 		content: '';
-		transition: opacity 250ms;
+		pointer-events: none;
 	}
 
 	main:not(.open):hover .card {
@@ -163,9 +160,21 @@
 
 	img {
 		display: block;
-		border-radius: 0.25rem;
-		filter: saturate(0.65) contrast(1.02);
+		border-radius: 0.2rem;
+		filter: saturate(0.82) contrast(1.02) brightness(0.98);
 		object-fit: cover;
+	}
+
+	.card > picture {
+		flex: 1;
+		overflow: hidden;
+	}
+
+	.card > picture img {
+		width: 100%;
+		height: 100%;
+		border-radius: 0;
+		object-position: center 35%;
 	}
 
 	.card > picture,
@@ -179,39 +188,45 @@
 		width: 100%;
 		flex-direction: column;
 		align-items: flex-start;
+		padding: clamp(1.5rem, 8cqw, 2.75rem);
+		color: #f5f5f2;
+		background: #242424;
 	}
 
 	.card h1 {
 		margin: 0;
 		font-size: var(--text-title);
-		font-weight: inherit;
-		line-height: 1.05;
-		letter-spacing: -0.03em;
+		font-weight: 650;
+		line-height: 0.95;
+		letter-spacing: 0.02em;
+		text-transform: uppercase;
 		white-space: nowrap;
 	}
 
 	.card h1 span {
-		display: inline-block;
+		display: block;
 	}
 
 	.card p {
-		margin: 0.65rem 0 0;
-		color: var(--muted);
+		margin: 0.8rem 0 0;
+		color: #aaa;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
 	}
 
 	.card nav {
 		position: relative;
 		z-index: 3;
 		display: flex;
-		gap: 1.75rem;
+		gap: 1.4rem;
 		justify-content: flex-start;
-		margin-top: 2.5rem;
+		margin-top: 2rem;
 	}
 
 	.card a {
 		display: block;
 		width: 1.5rem;
-		color: var(--muted);
+		color: #aaa;
 		transition:
 			color 150ms,
 			transform 150ms ease;
@@ -219,7 +234,7 @@
 
 	.card a:hover,
 	.card a:focus-visible {
-		color: var(--ink);
+		color: #fff;
 		transform: scale(1.05);
 	}
 
@@ -249,28 +264,18 @@
 		left: 68%;
 		width: min(36vw, 58svh);
 		margin: 0;
-		padding: 0.55rem;
-		border: 1px solid var(--border);
-		border-radius: 0.25rem;
-		color: inherit;
+		padding: 0;
+		border: 0;
+		border-radius: 0.4rem;
+		color: #f5f5f2;
 		background: var(--surface);
 		box-shadow: 0 1rem 3rem var(--shadow);
+		overflow: hidden;
 		transform: perspective(60rem) translate(-50%, -50%) rotateX(var(--rx)) rotateY(var(--ry));
 		transform-style: preserve-3d;
 		transition:
 			box-shadow 180ms,
 			transform 180ms ease-out;
-	}
-
-	.spread > figure::after {
-		position: absolute;
-		bottom: -1px;
-		left: 50%;
-		width: 4.5rem;
-		height: 2px;
-		background: var(--accent);
-		content: '';
-		transform: translateX(-50%);
 	}
 
 	.close {
@@ -289,12 +294,15 @@
 	.spread figure img {
 		width: 100%;
 		height: auto;
-		border-radius: 0.15rem;
+		border-radius: 0;
 		object-fit: contain;
 	}
 
 	figcaption {
-		padding: 0.8rem 0.35rem 0.45rem;
+		padding: 1.2rem 1.4rem;
+		background: #242424;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
 	}
 
 	.spread-identity {
@@ -308,9 +316,10 @@
 	h2 {
 		margin: 0;
 		font-size: var(--text-display);
-		font-weight: inherit;
+		font-weight: 650;
 		line-height: 0.78;
-		letter-spacing: -0.03em;
+		letter-spacing: -0.05em;
+		text-transform: uppercase;
 	}
 
 	h2 span {
@@ -343,7 +352,7 @@
 
 	.facts > span {
 		color: var(--muted);
-		letter-spacing: 0.1em;
+		letter-spacing: 0.18em;
 		text-transform: uppercase;
 	}
 
@@ -363,6 +372,8 @@
 		padding: 0.65rem 0.5rem;
 		color: inherit;
 		text-decoration: none;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
 		transition:
 			color 150ms,
 			transform 150ms ease;
