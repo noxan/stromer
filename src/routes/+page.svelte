@@ -102,7 +102,7 @@
 	main {
 		--text-body: 0.75rem;
 		--text-title: clamp(1.4rem, 9cqw, 2.25rem);
-		--text-display: clamp(4rem, 12vw, 11rem);
+		--text-display: clamp(4rem, 10vw, 9rem);
 		position: relative;
 		width: min(24rem, 100%, calc((100svh - 4rem) * 0.63));
 		font-size: var(--text-body);
@@ -151,7 +151,7 @@
 
 	.expand {
 		position: absolute;
-		z-index: 1;
+		z-index: 3;
 		inset: 0;
 		border: 0;
 		background: transparent;
@@ -196,9 +196,9 @@
 	.card h1 {
 		margin: 0;
 		font-size: var(--text-title);
-		font-weight: 650;
-		line-height: 0.95;
-		letter-spacing: 0.02em;
+		font-weight: 500;
+		line-height: 1.05;
+		letter-spacing: -0.02em;
 		text-transform: uppercase;
 		white-space: nowrap;
 	}
@@ -216,7 +216,7 @@
 
 	.card nav {
 		position: relative;
-		z-index: 3;
+		z-index: 4;
 		display: flex;
 		gap: 1.4rem;
 		justify-content: flex-start;
@@ -261,8 +261,8 @@
 		--ry: 0deg;
 		position: absolute;
 		top: 50%;
-		left: 68%;
-		width: min(36vw, 58svh);
+		left: 74%;
+		width: min(32vw, 58svh);
 		margin: 0;
 		padding: 0;
 		border: 0;
@@ -316,10 +316,9 @@
 	h2 {
 		margin: 0;
 		font-size: var(--text-display);
-		font-weight: 650;
-		line-height: 0.78;
-		letter-spacing: -0.05em;
-		text-transform: uppercase;
+		font-weight: 500;
+		line-height: 0.85;
+		letter-spacing: -0.04em;
 	}
 
 	h2 span {
@@ -336,18 +335,20 @@
 	.spread nav {
 		position: absolute;
 		right: clamp(1.5rem, 4vw, 4rem);
-		bottom: clamp(1.5rem, 4vw, 3rem);
+		bottom: clamp(1rem, 2.5vw, 2rem);
 		display: flex;
 		gap: clamp(1rem, 2vw, 2rem);
+		align-items: center;
 	}
 
 	.facts {
 		position: absolute;
-		bottom: clamp(1.5rem, 4vw, 3rem);
+		bottom: clamp(1rem, 2.5vw, 2rem);
 		left: clamp(1.5rem, 4vw, 4rem);
 		display: flex;
 		gap: clamp(1.5rem, 4vw, 4rem);
-		align-items: baseline;
+		min-height: 2.3rem;
+		align-items: center;
 	}
 
 	.facts > span {
@@ -369,7 +370,8 @@
 		display: flex;
 		gap: 0.45rem;
 		align-items: center;
-		padding: 0.65rem 0.5rem;
+		height: 2.3rem;
+		padding: 0 0.5rem;
 		color: inherit;
 		text-decoration: none;
 		letter-spacing: 0.08em;
