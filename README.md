@@ -1,6 +1,6 @@
 # stromer
 
-Personal site built with SvelteKit and exported as a fully static site.
+Minimal static personal site built with HTML, CSS, TypeScript, and Vite.
 
 ## Development
 
@@ -29,7 +29,7 @@ The production output is written to `build/`.
    | Setting                | Value                                       |
    | ---------------------- | ------------------------------------------- |
    | Production branch      | `main` (or the repository's default branch) |
-   | Framework preset       | `SvelteKit`                                 |
+   | Framework preset       | `Vite`                                      |
    | Build command          | `bun run build`                             |
    | Build output directory | `build`                                     |
    | Root directory         | `/`                                         |

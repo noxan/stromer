@@ -1,100 +1,41 @@
-<script lang="ts">
-	import IconGithub from '$lib/icons/github.svelte';
-	import IconLinkedIn from '$lib/icons/linkedin.svelte';
-	import IconMedium from '$lib/icons/medium.svelte';
-	import IconTwitter from '$lib/icons/twitter.svelte';
+:root {
+	--ink: light-dark(#202020, #f2f2ef);
+	--muted: light-dark(#6f6f6b, #aaa9a4);
+	--page: light-dark(#e8e8e4, #161616);
+	--surface: light-dark(#f7f7f4, #242424);
+	--border: light-dark(#d0d0cb, #444);
+	--accent: light-dark(#4a4a48, #b8b8b2);
+	--shadow: light-dark(#00000024, #00000066);
+	font-family: ui-sans-serif, system-ui, sans-serif;
+	color-scheme: light dark;
+	color: var(--ink);
+	background: var(--page);
+	font-synthesis: none;
+	-webkit-font-smoothing: antialiased;
+}
 
-	const profiles = [
-		{ url: 'https://www.linkedin.com/in/richard-stromer/', icon: IconLinkedIn, name: 'LinkedIn' },
-		{ url: 'https://github.com/noxan', icon: IconGithub, name: 'GitHub' },
-		{ url: 'https://twitter.com/richardstromer', icon: IconTwitter, name: 'Twitter' },
-		{ url: 'https://medium.com/@richard.stromer', icon: IconMedium, name: 'Medium' }
-	];
+* {
+	box-sizing: border-box;
+}
 
-	let open = $state(false);
-	let rx = $state('0deg');
-	let ry = $state('0deg');
-	let socialHover = false;
+body {
+	margin: 0;
+}
 
-	function tilt(event: PointerEvent) {
-		if (socialHover) return;
-		if (event.pointerType === 'touch' || matchMedia('(prefers-reduced-motion: reduce)').matches)
-			return;
-		rx = `${(event.clientY / innerHeight - 0.5) * 2}deg`;
-		ry = `${-(event.clientX / innerWidth - 0.5) * 2}deg`;
-	}
-</script>
+.page {
+	display: grid;
+	min-height: 100svh;
+	place-items: center;
+	padding: 2rem;
+	background: var(--page);
+}
 
-<svelte:window onpointermove={tilt} onblur={() => (rx = ry = '0deg')} />
+:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 4px;
+}
 
-<svelte:head>
-	<title>Richard Stromer</title>
-	<meta name="description" content="Richard Stromer builds digital products." />
-</svelte:head>
-
-<main class:open>
-	<article class="card" style:--rx={rx} style:--ry={ry}>
-		<button class="expand" onclick={() => (open = true)} aria-label="Open profile"></button>
-		<picture>
-			<source srcset="/me.webp" type="image/webp" />
-			<img src="/me.jpg" width="160" height="160" alt="Richard Stromer" fetchpriority="high" />
-		</picture>
-
-		<section>
-			<div class="card-identity">
-				<h1><span>Richard</span> <span>Stromer</span></h1>
-				<p>Builds digital products.</p>
-			</div>
-			<nav
-				aria-label="Social profiles"
-				onpointerenter={() => (socialHover = true)}
-				onpointerleave={() => (socialHover = false)}
-			>
-				{#each profiles as profile (profile.url)}
-					<a href={profile.url} aria-label={profile.name} title={profile.name}>
-						<profile.icon />
-					</a>
-				{/each}
-			</nav>
-		</section>
-	</article>
-
-	<div class="spread" aria-hidden={!open}>
-		<figure style:--rx={rx} style:--ry={ry}>
-			<button class="close" onclick={() => (open = false)} aria-label="Close profile"></button>
-			<picture>
-				<source srcset="/me.webp" type="image/webp" />
-				<img src="/me.jpg" width="480" height="480" alt="" />
-			</picture>
-			<figcaption>Builds digital products.</figcaption>
-		</figure>
-		<div class="spread-identity">
-			<h2><span>Richard</span><span>Stromer</span></h2>
-		</div>
-		<aside class="facts">
-			<span>About</span>
-			<ul>
-				<li>Applied AI systems</li>
-				<li>Product & engineering leadership</li>
-				<li>Founder <small>(Forbes U30)</small></li>
-			</ul>
-		</aside>
-		<nav
-			aria-label="Social profiles"
-			onpointerenter={() => (socialHover = true)}
-			onpointerleave={() => (socialHover = false)}
-		>
-			{#each profiles as profile (profile.url)}
-				<a href={profile.url} tabindex={open ? 0 : -1}>
-					<profile.icon /><span>{profile.name}</span>
-				</a>
-			{/each}
-		</nav>
-	</div>
-</main>
-
-<style>
-	:global(.page) {
+	.page {
 		display: grid;
 		padding: 2rem;
 	}
@@ -391,7 +332,7 @@
 		transform: scale(0.97);
 	}
 
-	.spread a :global(svg) {
+	.spread a svg {
 		width: 1rem;
 	}
 
@@ -460,4 +401,3 @@
 			transition: none;
 		}
 	}
-</style>
