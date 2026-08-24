@@ -1,19 +1,19 @@
 {
-  "name": "stromer",
-  "version": "0.0.1",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc --noEmit && vite build",
-    "preview": "vite preview",
-    "check": "tsc --noEmit",
-    "format": "prettier --write .",
-    "lint": "prettier --check . && tsc --noEmit"
-  },
-  "devDependencies": {
-    "prettier": "^3.5.3",
-    "typescript": "^5.8.3",
-    "vite": "^6.3.5"
-  }
+	"name": "stromer",
+	"version": "0.0.1",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc --noEmit && vite build",
+		"preview": "vite preview",
+		"check": "tsc --noEmit",
+		"format": "biome format --write .",
+		"lint": "biome check . && tsc --noEmit"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.5.10",
+		"typescript": "^5.8.3",
+		"vite": "^6.3.5"
+	}
 }
