@@ -41,6 +41,8 @@ body {
 	}
 
 	main {
+		--rx: 0deg;
+		--ry: 0deg;
 		--text-body: 0.75rem;
 		--text-title: clamp(1.4rem, 9cqw, 2.25rem);
 		--text-display: clamp(4rem, 10vw, 9rem);
@@ -51,8 +53,6 @@ body {
 	}
 
 	.card {
-		--rx: 0deg;
-		--ry: 0deg;
 		position: relative;
 		display: flex;
 		flex-direction: column;
@@ -198,8 +198,6 @@ body {
 	}
 
 	.spread > figure {
-		--rx: 0deg;
-		--ry: 0deg;
 		position: absolute;
 		top: 50%;
 		left: 74%;

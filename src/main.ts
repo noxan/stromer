@@ -1,12 +1,14 @@
 import './style.css';
 
 const main = document.querySelector<HTMLElement>('main')!;
-const card = document.querySelector<HTMLElement>('.card')!;
-const figure = document.querySelector<HTMLElement>('.spread > figure')!;
 const spread = document.querySelector<HTMLElement>('.spread')!;
 const spreadLinks = [...spread.querySelectorAll<HTMLAnchorElement>('nav a')];
 const socialNavs = document.querySelectorAll<HTMLElement>('nav');
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 let socialHover = false;
+let tiltFrame = 0;
+let pointerX = 0;
+let pointerY = 0;
 
 function setOpen(open: boolean): void {
   main.classList.toggle('open', open);
@@ -15,20 +17,23 @@ function setOpen(open: boolean): void {
 }
 
 function resetTilt(): void {
-  card.style.setProperty('--rx', '0deg');
-  card.style.setProperty('--ry', '0deg');
-  figure.style.setProperty('--rx', '0deg');
-  figure.style.setProperty('--ry', '0deg');
+  cancelAnimationFrame(tiltFrame);
+  tiltFrame = 0;
+  main.style.setProperty('--rx', '0deg');
+  main.style.setProperty('--ry', '0deg');
+}
+
+function renderTilt(): void {
+  tiltFrame = 0;
+  main.style.setProperty('--rx', `${(pointerY / innerHeight - 0.5) * 2}deg`);
+  main.style.setProperty('--ry', `${-(pointerX / innerWidth - 0.5) * 2}deg`);
 }
 
 function tilt(event: PointerEvent): void {
-  if (socialHover || event.pointerType === 'touch' || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const rx = `${(event.clientY / innerHeight - 0.5) * 2}deg`;
-  const ry = `${-(event.clientX / innerWidth - 0.5) * 2}deg`;
-  card.style.setProperty('--rx', rx);
-  card.style.setProperty('--ry', ry);
-  figure.style.setProperty('--rx', rx);
-  figure.style.setProperty('--ry', ry);
+  if (socialHover || event.pointerType === 'touch' || reducedMotion.matches) return;
+  pointerX = event.clientX;
+  pointerY = event.clientY;
+  if (!tiltFrame) tiltFrame = requestAnimationFrame(renderTilt);
 }
 
 document.querySelector<HTMLButtonElement>('.expand')!.addEventListener('click', () => setOpen(true));
