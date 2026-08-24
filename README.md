@@ -1,38 +1,51 @@
-# sv
+# stromer
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Personal site built with SvelteKit and exported as a fully static site.
 
-## Creating a project
+## Development
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
+```sh
+bun install
+bun run dev
 ```
 
-## Developing
+## Checks
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+```sh
+bun run check
+bun run lint
+bun run build
 ```
 
-## Building
+The production output is written to `build/`.
 
-To create a production version of your app:
+## Deploy to Cloudflare Pages
 
-```bash
-npm run build
+1. Push this repository to GitHub or GitLab.
+2. In the [Cloudflare dashboard](https://dash.cloudflare.com), open **Workers & Pages**.
+3. Select **Create application → Pages → Connect to Git**.
+4. Select this repository and use:
+
+   | Setting                | Value                                       |
+   | ---------------------- | ------------------------------------------- |
+   | Production branch      | `main` (or the repository's default branch) |
+   | Framework preset       | `SvelteKit`                                 |
+   | Build command          | `bun run build`                             |
+   | Build output directory | `build`                                     |
+   | Root directory         | `/`                                         |
+
+5. Add the environment variable `BUN_VERSION` with a current Bun version if Cloudflare does not detect `bun.lock` automatically.
+6. Select **Save and Deploy**.
+
+No runtime environment variables, Functions, database, or server are required. Every push to the production branch triggers a deployment; pull requests receive preview URLs.
+
+### Custom domain
+
+After the first deployment, open the Pages project and select **Custom domains → Set up a custom domain**. If the domain already uses Cloudflare DNS, Cloudflare configures the DNS record and HTTPS automatically. Otherwise, follow the displayed CNAME instructions.
+
+### Local production preview
+
+```sh
+bun run build
+bun run preview
 ```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
